@@ -152,6 +152,12 @@ def buildInitialState(graph,infile):
                 if idx==0:
                     degree = int(data["D"])
                     trans = int(data["T"])
+                    # check if degree meets requirement
+                    if degree < 1:
+                        raise ValueError ("Least degree is 1!")
+                    # check if transactions meets requirement
+                    if trans < 2:
+                        raise ValueError ("Least consecutive purchases is 2!")
                 else:
                     if isValidSchema(data):
                         updateGraph(graph,idx,data,trans)
@@ -221,12 +227,7 @@ def main(args):
     g = Graph()
     # get index, D and T from the batch_log.json
     idx, degree,trans = buildInitialState(g,inputFile)
-    # check if degree meets requirement
-    if degree < 1:
-        raise ValueError ("Least degree is 1!")
-    # check if transactions meets requirement
-    if trans < 2:
-        raise ValueError ("Least consecutive purchases is 2!")
+
     print ("The initial state took "+"{0:.5f}".format(time.time()-startTime)+" seconds")
     print ("read stream_log.json file and flag anomalous purchases")
     streamFile = args[2]
