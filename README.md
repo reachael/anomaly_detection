@@ -29,9 +29,9 @@ In the addNodeValue() function, if a new record is coming for that node, check i
 
 ### getNetworkTransactions(graph, node, degree, trans)
 
-This function takes 4 parameters: graph, node, degree and trans. The function Breadth-first searches for all the nodes in the **graph** that are **degree** degrees in a social network of **node** (not including **node**). 
+This function takes 4 parameters: graph, node, degree and trans. The function Breadth-first searches for all the nodes in the `graph` that are `degree` degrees in a social network of **node** (not including **node**). 
 If the nodes is not empty, add it to networkNodes for further usage. Since the values stores in each node is sorted by timestamp ( see addNodeValue() function in the Graph class), I use merge sort algorithm to get the 
-consecutive purchases made by a **node**'s social network. Finally, return None if there is less than 2 purchases in the social network, otherwise return a list of **trans** length or less.
+consecutive purchases made by a `node`'s social network. Finally, return None if there is less than 2 purchases in the social network, otherwise return a list of **trans** length or less.
 
 ### insertPosition(A, target)
 
