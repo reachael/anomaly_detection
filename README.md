@@ -5,23 +5,23 @@ There are 3 python files in the src directory. They are:
 
 ## graph.py
 
-* [Graph()](README.md##Graph())
-* [updateGraph()](README.md## updateGraph(graph, idx, data, trans))
+* Graph()
+* updateGraph()
 
 ## attribute.py
 
-* [getNetworkTransactions()](README.md## getNetworkTransactions(graph, node, degree, trans))
-* [insertPosition()](README.md## insertPosition(A, target))
-* [mergeSort()](README.md## mergeSort(A, B, trans))
-* [isValidSchema()](README.md## isValidSchema(data))
-* [buildInitialState()](README.md## buildInitialState(graph, infile))
-* [flagAnomalousPurchases()](README.md## flagAnomalousPurchases(g, streamFile, outputFile, idx, trans, degree))
-* [getMeanAndStdev()](README.md## getMeanAndStdev(list))
-* [isAnomalous()](README.md## isAnomalous(data, mean, sd))
+* getNetworkTransactions()
+* insertPosition()
+* mergeSort()
+* isValidSchema()
+* buildInitialState()
+* flagAnomalousPurchases()
+* getMeanAndStdev()
+* isAnomalous()
 
 ## main.py
 
-* [main()](README.md##main(args))
+* main()
 
 ## Graph()
 
