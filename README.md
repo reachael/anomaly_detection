@@ -5,23 +5,23 @@ There are 3 python files in the src directory. They are:
 
 ## graph.py
 
-[* Graph()](README.md## Graph())
-* getNetworkTransactions()
+* [Graph()](README.md## Graph())
+* [updateGraph()](README.md## updateGraph(graph, idx, data, trans))
 
 ## attribute.py
 
-* insertPosition()
-* mergeSort()
-* isValidSchema()
-* updateGraph()
-* buildInitialState()
-* flagAnomalousPurchases()
-* getMeanAndStdev()
-* isAnomalous()
+* [getNetworkTransactions()](README.md## getNetworkTransactions(graph, node, degree, trans))
+* [insertPosition()](README.md## insertPosition(A, target))
+* [mergeSort()](README.md## mergeSort(A, B, trans))
+* [isValidSchema()](README.md## isValidSchema(data))
+* [buildInitialState()](README.md## buildInitialState(graph, infile))
+* [flagAnomalousPurchases()](README.md## flagAnomalousPurchases(g, streamFile, outputFile, idx, trans, degree))
+* [getMeanAndStdev()](README.md## getMeanAndStdev(list))
+* [isAnomalous()](README.md## isAnomalous(data, mean, sd))
 
 ## main.py
 
-* main()
+* [main()](README.md## main(args))
 
 ## Graph()
 
@@ -34,6 +34,10 @@ The Graph class is undirected. Inside the Graph class, there are 3 functions: ad
 3. addNodeValue() takes 5 parameters: idx, node, timeStamp, amount and trans. idx is the index for the record in the file, node is the node to be added values, timeStamp is the timestamp for the record, trans is the consecutive purchases, the values are order by timeStamp. 
 
 In the addNodeValue() function, if a new record is coming for that node, check it with the latest timeStamp, if the timeStamp is newer, appends to the end of the node, otherwise uses the insertPosition() function to insert the record to the right place.
+
+## updateGraph(graph, idx, data, trans)
+
+This function takes 4 parameters: graph, idx, data and trans. It will update the `graph` based on event type of `data`. The code will crash if the event type is not among "purchase", "befriend", "unfriend".
 
 ## getNetworkTransactions(graph, node, degree, trans)
 
@@ -53,9 +57,6 @@ This function takes 3 parameters: A, B and trans. It merges `A` and `B` and retu
 
 The function takes one parameter: data. It checks the schema of data, the code will crash if the schema is not correct.
 
-## updateGraph(graph, idx, data, trans)
-
-This function takes 4 parameters: graph, idx, data and trans. It will update the `graph` based on event type of `data`. The code will crash if the event type is not among "purchase", "befriend", "unfriend".
 
 ## buildInitialState(graph, infile)
 
