@@ -2,6 +2,7 @@ import time
 import json
 from math import floor, sqrt
 from graph import *
+
 # Get the latest T purchases
 def getNetworkTransactions(graph,node,degree,trans):
     # queue data structure to store nodes for each layer
@@ -18,15 +19,17 @@ def getNetworkTransactions(graph,node,degree,trans):
         temp=set()
         while queue:
             currentNode = queue.pop()
-            # get connected nodes for current node
-            for n in graph._connectedNode[currentNode]:
-                # check if visited or not
-                if n not in visited:
-                    visited.add(n)
-                    temp.add(n)
-                    # add the node if it is not empty
-                    if len(graph._nodeValue[n])!=0:
-                        networkNodes.append(n)
+            # check if current node is isolated or not
+            if graph._connectedNode[currentNode]:
+                # get connected nodes for current node
+                for n in graph._connectedNode[currentNode]:
+                    # check if visited or not
+                    if n not in visited:
+                        visited.add(n)
+                        temp.add(n)
+                        # add the node if it is not empty
+                        if len(graph._nodeValue[n])!=0:
+                            networkNodes.append(n)
         queue = temp
         d+=1
     # store latest T purchase
