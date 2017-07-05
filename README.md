@@ -1,10 +1,15 @@
 # Coding Summary
 
-I used Python 3.6.1 for this coding challenge. In the Python script, I used sys, time, json, collections and math modules. All are built-in modules for Python.
-There are 1 class and 10 functions in the code. They are:
+I used Python 3.6.1 for this coding challenge. In the Python scripts, I used sys, time, json, collections and math modules. All are built-in modules for Python.
+There are 3 python files in the src directory. They are:
+
+## graph.py
 
 * Graph()
 * getNetworkTransactions()
+
+## attribute.py
+
 * insertPosition()
 * mergeSort()
 * isValidSchema()
@@ -13,6 +18,9 @@ There are 1 class and 10 functions in the code. They are:
 * flagAnomalousPurchases()
 * getMeanAndStdev()
 * isAnomalous()
+
+## main.py
+
 * main()
 
 ### Graph()
