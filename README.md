@@ -5,7 +5,7 @@ There are 3 python files in the src directory. They are:
 
 ## graph.py
 
-* [Graph()](README.md## Graph())
+* [Graph()](README.md##Graph())
 * [updateGraph()](README.md## updateGraph(graph, idx, data, trans))
 
 ## attribute.py
@@ -21,7 +21,7 @@ There are 3 python files in the src directory. They are:
 
 ## main.py
 
-* [main()](README.md## main(args))
+* [main()](README.md##main(args))
 
 ## Graph()
 
