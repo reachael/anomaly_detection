@@ -20,7 +20,7 @@ def getNetworkTransactions(graph,node,degree,trans):
         while queue:
             currentNode = queue.pop()
             # check if current node is isolated or not
-            if graph._connectedNode[currentNode]:
+            if currentNode in graph._connectedNode.keys():
                 # get connected nodes for current node
                 for n in graph._connectedNode[currentNode]:
                     # check if visited or not
