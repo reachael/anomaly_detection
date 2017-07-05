@@ -17,13 +17,13 @@ There are 1 class and 10 functions in the code. They are:
 
 ### Graph()
 
-The Graph class is undirected. Inside the Graph class, there are 3 functions: add_edge(), remove_edge() and addNodeValue(). 
+The Graph class is undirected. Inside the Graph class, there are 3 functions: addEdge(), removeEdge() and addNodeValue(). 
 
-1. add_edge() takes 2 parameters: node1 and node2, it adds an edge between node1 and node2.
+1. addEdge() takes 2 parameters: node1 and node2, it adds an edge between node1 and node2.
 
-2. remove_edge() takes 2 parameters: node1 and node2, it removes an edge between node1 and node2.
+2. removeEdge() takes 2 parameters: node1 and node2, it removes an edge between node1 and node2.
 
-3. addNodeValue() takes 5 parameters: idx, node,timeStamp,amount and trans. idx is the index for the record in the file, node is the node to be added values, timeStamp is the timestamp for the record, trans is the consecutive purchases, the values are order by timeStamp. 
+3. addNodeValue() takes 5 parameters: idx, node, timeStamp, amount and trans. idx is the index for the record in the file, node is the node to be added values, timeStamp is the timestamp for the record, trans is the consecutive purchases, the values are order by timeStamp. 
 
 In the addNodeValue() function, if a new record is coming for that node, check it with the latest timeStamp, if the timeStamp is newer, appends to the end of the node, otherwise uses the insertPosition() function to insert the record to the right place.
 
@@ -35,7 +35,7 @@ consecutive purchases made by a `node`'s social network. Finally, return None if
 
 ### insertPosition(A, target)
 
-This function takes 2 parameters: A and target. It return the position of which the value is greater than `target` and should be inerted in `A`.
+This function takes 2 parameters: A and target. It return the position of which the value is greater than `target` and should be inserted in `A`.
 
 ### mergeSort(A, B, trans)
 
@@ -47,7 +47,7 @@ The function takes one parameter: data. It checks the schema of data, the code w
 
 ### updateGraph(graph, idx, data, trans)
 
-This function takes 4 parameters: graph,idx,data and trans. It will update the `graph` based on event type of `data`. The code will crash if the event type is not among "purchase", "befriend", "unfriend".
+This function takes 4 parameters: graph, idx, data and trans. It will update the `graph` based on event type of `data`. The code will crash if the event type is not among "purchase", "befriend", "unfriend".
 
 ### buildInitialState(graph, infile)
 

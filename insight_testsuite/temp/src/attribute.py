@@ -1,39 +1,7 @@
-import sys
 import time
 import json
-from collections import defaultdict
 from math import floor, sqrt
-
-# Build the undirected graph data structure
-class Graph(object):
-    def __init__(self):
-        self._connectedNode = defaultdict(set)
-        self._nodeValue = defaultdict(list)
-
-    def add_edge(self, node1,node2):
-        #Add edge to graph
-        self._connectedNode[node1].add(node2)
-        self._connectedNode[node2].add(node1)
-
-    def remove_edge(self, node1,node2):
-        #Remove edge from graph
-        self._connectedNode[node1].remove(node2)
-        self._connectedNode[node2].remove(node1)
-
-    def add_nodeValue(self,idx, node,timeStamp,amount,trans):
-        # Add new purchase to a user, queue data structure
-        # each field corresponds to index, timeStamp, amount, sorted by time and idx
-        if len(self._nodeValue[node])==0 or timeStamp >= self._nodeValue[node][-1][1]:
-            self._nodeValue[node].append((idx, timeStamp,amount))
-        else:
-            pos = insertPosition(self._nodeValue[node],((idx, timeStamp,amount)))
-            self._nodeValue[node].insert(pos,(idx, timeStamp,amount))
-        # Remove outdated purchase if there is over T purchases for a user
-        while len(self._nodeValue[node]) > trans:
-            # sort by timeStamp then index
-            self._nodeValue[node].pop(0)
-
-
+from graph import *
 # Get the latest T purchases
 def getNetworkTransactions(graph,node,degree,trans):
     # queue data structure to store nodes for each layer
@@ -121,23 +89,6 @@ def isValidSchema(data):
     else:
         raise ValueError ("Invalid schema!")
 
-# update graph for each category
-def updateGraph(graph,idx,data,trans):
-    if data["event_type"] == "purchase":
-        graph.add_nodeValue(idx, data["id"], data["timestamp"],float(data["amount"]),trans)
-    elif data["event_type"]== "befriend":
-        graph.add_edge(data["id1"],data["id2"])
-    elif data["event_type"]== "unfriend":
-        graph.remove_edge(data["id1"],data["id2"])
-        # remove isolated nodes from the dictionary
-        if not graph._connectedNode[data["id1"]]:
-            del graph._connectedNode[data["id1"]]
-        if not graph._connectedNode[data["id2"]]:
-            del graph._connectedNode[data["id2"]]
-    else:
-        raise ValueError ("Category is not valid!")
-
-
 # read input file and build initial state
 def buildInitialState(graph,infile):
     idx = 0
@@ -170,7 +121,7 @@ def buildInitialState(graph,infile):
 # flag the anomalous purchases and store it in flagged_purchases.json
 def flagAnomalousPurchases(g,streamFile,outputFile,idx,trans,degree):
     # open output file
-    output = open(outputFile,"a")
+    output = open(outputFile,"w")
     # open stream_log.json
     with open (streamFile,"r") as input:
         for item in input:
@@ -200,7 +151,6 @@ def flagAnomalousPurchases(g,streamFile,outputFile,idx,trans,degree):
     # close output file
     output.close()
 
-
 # get mean and standard deviation for purchases
 def getMeanAndStdev(list):
     if len(list)==0:
@@ -215,28 +165,3 @@ def getMeanAndStdev(list):
 # criteria for anomalous, input is string format
 def isAnomalous(data, mean, sd):
     return float(data) > float(mean)+3*float(sd)
-
-# this is the main function
-def main(args):
-    # check if there is enough arguments
-    if len(args)!=4:
-        raise ValueError("Please provide input files and out file")
-    startTime = time.time()
-    inputFile = args[1]
-    # initialize the network
-    g = Graph()
-    # get index, D and T from the batch_log.json
-    idx, degree,trans = buildInitialState(g,inputFile)
-
-    print ("The initial state took "+"{0:.5f}".format(time.time()-startTime)+" seconds")
-    print ("read stream_log.json file and flag anomalous purchases")
-    streamFile = args[2]
-    outputFile = args[3]
-    # flag the anomalous purchases and store it in flagged_purchases.json
-    flagAnomalousPurchases(g,streamFile,outputFile,idx,trans,degree)
-
-    print ("total execution took "+"{0:.5f}".format(time.time()-startTime)+" seconds")
-
-if __name__ == "__main__":
-    main(sys.argv)
-
