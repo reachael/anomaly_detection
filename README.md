@@ -1,7 +1,7 @@
 # Coding Summary
 
 I used Python 3.6.1 for this coding challenge. In the Python scripts, I used sys, time, json, collections and math modules. All are built-in modules for Python.
-There are 3 python files in the src directory. They are:
+There are 3 python files in the src directory. graph.py and attribute.py are modules to be imported into main.py which is the main script to run. The followings are the python files and functions inside (Graph is a class) :
 
 ## graph.py
 
@@ -23,17 +23,19 @@ There are 3 python files in the src directory. They are:
 
 * main()
 
+# Details of one class and nine functions 
+
 ## Graph()
 
 The Graph class is undirected. Inside the Graph class, there are 3 functions: addEdge(), removeEdge() and addNodeValue(). 
 
-1. addEdge() takes 2 parameters: node1 and node2, it adds an edge between node1 and node2.
+1. addEdge() takes 2 parameters: `node1` and `node2`, it adds an edge between node1 and node2.
 
 2. removeEdge() takes 2 parameters: node1 and node2, it removes an edge between node1 and node2.
 
-3. addNodeValue() takes 5 parameters: idx, node, timeStamp, amount and trans. idx is the index for the record in the file, node is the node to be added values, timeStamp is the timestamp for the record, trans is the consecutive purchases, the values are order by timeStamp. 
+3. addNodeValue() takes 5 parameters: idx, node, timeStamp, amount and trans. idx is the index for the record in the file, node is the node(or user) to add values, timeStamp is the timestamp for the record, trans is the consecutive purchases, the values stored in nodes are order by timeStamp. 
 
-In the addNodeValue() function, if a new record is coming for that node, check it with the latest timeStamp, if the timeStamp is newer, appends to the end of the node, otherwise uses the insertPosition() function to insert the record to the right place.
+In the addNodeValue() function, if a new record is coming for a node, first check it with the latest timeStamp already in the node, if the timeStamp is newer, appends to the end of the node, otherwise uses the insertPosition() function to insert the record to the right place.
 
 ## updateGraph(graph, idx, data, trans)
 
